@@ -1,4 +1,4 @@
-package com.neotones;
+package com.neonotes.domain;
 
 public class Main {
     public static void main(String[] args) {
