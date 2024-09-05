@@ -1,6 +1,6 @@
 package com.neonotes.domain.entities;
 
-public enum Notes {
+public enum Note {
     C("C","DO"),
     C_SHARP("C#","DO#","Db","REb"),
     D("D","RE"),
@@ -19,12 +19,12 @@ public enum Notes {
     private String relativeFlatLetter;
     private String relativeFlatSymbol;
 
-    Notes(String letter, String symbol) {
+    Note(String letter, String symbol) {
         this.letter = letter;
         this.symbol = symbol;
     }
 
-    Notes(String letter, String symbol, String relativeFlatLetter, String relativeFlatSymbol) {
+    Note(String letter, String symbol, String relativeFlatLetter, String relativeFlatSymbol) {
         this.letter = letter;
         this.symbol = symbol;
         this.relativeFlatLetter = relativeFlatLetter;

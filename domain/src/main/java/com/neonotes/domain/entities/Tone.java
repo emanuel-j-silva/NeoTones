@@ -1,15 +1,15 @@
 package com.neonotes.domain.entities;
 
 public class Tone {
-    private final Notes note;
+    private final Note note;
     private final ScaleType scale;
 
-    public Tone(Notes note, ScaleType scale) {
+    public Tone(Note note, ScaleType scale) {
         this.note = note;
         this.scale = scale;
     }
 
-    public Notes getNote() {
+    public Note getNote() {
         return note;
     }
 
