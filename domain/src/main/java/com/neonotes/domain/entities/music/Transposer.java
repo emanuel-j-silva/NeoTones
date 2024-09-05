@@ -1,4 +1,6 @@
-package com.neonotes.domain.entities;
+package com.neonotes.domain.entities.music;
+
+import com.neonotes.domain.entities.music.Note;
 
 public class Transposer {
     private final Note standardScale;

@@ -1,6 +1,8 @@
-package com.neonotes.domain.entities;
+package com.neonotes.domain.entities.music.components;
 
-public class Phrase implements MusicComponent{
+import com.neonotes.domain.entities.music.components.MusicComponent;
+
+public class Phrase implements MusicComponent {
     private String phrase;
 
     public Phrase(String phrase) {

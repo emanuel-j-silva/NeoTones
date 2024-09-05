@@ -1,4 +1,4 @@
-package com.neonotes.domain.entities;
+package com.neonotes.domain.entities.music.components;
 
 public interface MusicComponent {
     void display();

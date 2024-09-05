@@ -1,4 +1,4 @@
-package com.neonotes.domain.entities;
+package com.neonotes.domain.entities.music;
 
 public enum Note {
     C("C","DO"),
