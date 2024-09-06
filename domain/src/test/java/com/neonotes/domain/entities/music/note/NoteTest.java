@@ -1,4 +1,4 @@
-package com.neonotes.domain.entities;
+package com.neonotes.domain.entities.music.note;
 
 import com.neonotes.domain.entities.music.note.Note;
 import org.junit.jupiter.api.DisplayName;
