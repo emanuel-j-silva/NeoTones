@@ -14,6 +14,8 @@ public enum Note {
     A_SHARP("A#","LA#","Bb","SIb"),
     B("B","SI");
 
+    private static final int NOTE_RANGE = 12;
+
     private String letter;
     private String symbol;
     private String relativeFlatLetter;
@@ -51,10 +53,14 @@ public enum Note {
         int actualSemitone = this.ordinal();
 
         // Module to ensure semitones stay within the range of available notes
-        semitones = semitones % (B.ordinal() + 1);
+        semitones = semitones % NOTE_RANGE;
 
         int pretendedTone = actualSemitone + semitones;
-        int i = pretendedTone % ( B.ordinal() + 1);
+        int i = pretendedTone % NOTE_RANGE;
+
+        if (i < 0){
+            i += NOTE_RANGE;
+        }
 
         return Note.values()[i];
     }
