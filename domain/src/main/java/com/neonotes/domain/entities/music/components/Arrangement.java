@@ -2,22 +2,23 @@ package com.neonotes.domain.entities.music.components;
 
 import com.neonotes.domain.entities.music.Tone;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Arrangement {
 
-    private Tone tone;
+    private final UUID uuid;
+    private final Tone tone;
     private final List<MusicComponent> components;
 
-    public Arrangement(Tone tone){
+    public Arrangement(Tone tone, MusicComponent... components) {
+        this.uuid = null;
         this.tone = tone;
-        this.components = new ArrayList<>();
+        this.components = new ArrayList<>(Arrays.asList(components));
     }
 
-    public Arrangement(Tone tone, MusicComponent... components) {
-        this.tone = tone;
+    public Arrangement(UUID uuid, Tone tone, MusicComponent... components) {
+        this.uuid = uuid == null ? UUID.randomUUID() : uuid;
+        this.tone = Objects.requireNonNull(tone);
         this.components = new ArrayList<>(Arrays.asList(components));
     }
 
@@ -29,13 +30,7 @@ public class Arrangement {
         return tone;
     }
 
-    public void setTone(Tone tone) {
-        this.tone = tone;
-    }
-
     public List<MusicComponent> getComponents() {
         return components;
     }
-
-
 }

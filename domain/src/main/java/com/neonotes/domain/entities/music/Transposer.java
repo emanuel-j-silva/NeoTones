@@ -10,7 +10,6 @@ public class Transposer {
         Arrangement arrangement = new Arrangement(pretendedTone);
 
         int semitones = pretendedTone.getNote().ordinal() - defaultArrangement.getTone().getNote().ordinal();
-        arrangement.setTone(pretendedTone);
 
         for (MusicComponent component: defaultArrangement.getComponents()){
             component.shiftTone(semitones);
