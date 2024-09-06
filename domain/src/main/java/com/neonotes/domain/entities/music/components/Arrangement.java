@@ -11,14 +11,12 @@ public class Arrangement {
     private final List<MusicComponent> components;
 
     public Arrangement(Tone tone, MusicComponent... components) {
-        this.uuid = UUID.randomUUID();
-        this.tone = tone;
-        this.components = new ArrayList<>(Arrays.asList(components));
+        this(UUID.randomUUID(), tone, components);
     }
 
     public Arrangement(UUID uuid, Tone tone, MusicComponent... components) {
         this.uuid = uuid == null ? UUID.randomUUID() : uuid;
-        this.tone = Objects.requireNonNull(tone);
+        this.tone = Objects.requireNonNull(tone,"Tone can't be null");
         this.components = new ArrayList<>(Arrays.asList(components));
     }
 
