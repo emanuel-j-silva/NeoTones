@@ -1,6 +1,6 @@
 package com.neonotes.domain.entities.music.components;
 
-import com.neonotes.domain.entities.music.Note;
+import com.neonotes.domain.entities.music.note.Note;
 import java.util.ArrayList;
 import java.util.List;
 

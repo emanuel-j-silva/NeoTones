@@ -1,7 +1,7 @@
 package com.neonotes.domain.entities.music;
 
-import com.neonotes.domain.entities.music.components.Arrangement;
 import com.neonotes.domain.entities.music.components.MusicComponent;
+import com.neonotes.domain.entities.music.note.Tone;
 
 
 public class Transposer {

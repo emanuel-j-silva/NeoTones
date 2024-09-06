@@ -1,4 +1,4 @@
-package com.neonotes.domain.entities.music;
+package com.neonotes.domain.entities.music.note;
 
 public enum ScaleType {
     MAJOR,

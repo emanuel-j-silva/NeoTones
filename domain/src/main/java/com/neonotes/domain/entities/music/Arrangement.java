@@ -1,6 +1,7 @@
-package com.neonotes.domain.entities.music.components;
+package com.neonotes.domain.entities.music;
 
-import com.neonotes.domain.entities.music.Tone;
+import com.neonotes.domain.entities.music.components.MusicComponent;
+import com.neonotes.domain.entities.music.note.Tone;
 
 import java.util.*;
 

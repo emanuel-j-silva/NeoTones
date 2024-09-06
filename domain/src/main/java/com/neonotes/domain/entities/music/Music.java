@@ -1,7 +1,6 @@
 package com.neonotes.domain.entities.music;
 
-import com.neonotes.domain.entities.music.components.Arrangement;
-import com.neonotes.domain.entities.music.components.MusicComponent;
+import com.neonotes.domain.entities.music.note.Tone;
 
 import java.util.HashMap;
 import java.util.Map;

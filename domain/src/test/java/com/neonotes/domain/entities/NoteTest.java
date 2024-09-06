@@ -1,6 +1,6 @@
 package com.neonotes.domain.entities;
 
-import com.neonotes.domain.entities.music.Note;
+import com.neonotes.domain.entities.music.note.Note;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

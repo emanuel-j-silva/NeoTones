@@ -1,7 +1,7 @@
-package com.neonotes.domain.entities.music;
+package com.neonotes.domain.entities.music.note;
 
-import com.neonotes.domain.entities.music.Note;
-import com.neonotes.domain.entities.music.ScaleType;
+import com.neonotes.domain.entities.music.note.Note;
+import com.neonotes.domain.entities.music.note.ScaleType;
 
 public class Tone {
     private final Note note;
