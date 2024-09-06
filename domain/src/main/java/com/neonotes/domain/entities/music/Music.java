@@ -4,6 +4,7 @@ import com.neonotes.domain.entities.music.components.Arrangement;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Music {
@@ -12,21 +13,17 @@ public class Music {
     private final Map<Tone, Arrangement> arrangements;
 
     public Music(String title) {
-        this.uuid = UUID.randomUUID();
-        this.title = title;
-        this.arrangements = new HashMap<>();
+        this(UUID.randomUUID(), title, new HashMap<>());
     }
 
     public Music(String title, Map<Tone, Arrangement> arrangements) {
-        this.uuid = UUID.randomUUID();
-        this.title = title;
-        this.arrangements = arrangements;
+        this(UUID.randomUUID(), title, arrangements);
     }
 
     public Music(UUID uuid, String title, Map<Tone, Arrangement> arrangements) {
         this.uuid = uuid == null ? UUID.randomUUID() : uuid;
-        this.title = title;
-        this.arrangements = arrangements;
+        this.title = Objects.requireNonNull(title,"Title can't be null");
+        this.arrangements = Objects.requireNonNull(arrangements,"Arrangements can't be null");
     }
 
     public UUID getUuid() {
