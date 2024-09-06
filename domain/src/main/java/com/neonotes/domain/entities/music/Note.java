@@ -7,7 +7,7 @@ public enum Note {
     D_SHARP("D#","RE#","Eb","MIb"),
     E("E","MI"),
     F("F","FA"),
-    F_SHARP("F#","FA#","SOLb","SOLb"),
+    F_SHARP("F#","FA#","Gb","SOLb"),
     G("G","SOL"),
     G_SHARP("G#","SOL#","Ab","LAb"),
     A("A","LA"),
