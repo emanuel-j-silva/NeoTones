@@ -20,7 +20,14 @@ public class Melody implements MusicComponent {
     }
 
     @Override
-    public void display() {
+    public MusicComponent shiftTone(int semitones) {
+        Melody transposedMelody = new Melody();
 
+        for (Note note:notes){
+            Note transposedNote = note.transpose(semitones);
+            transposedMelody.addNote(transposedNote);
+        }
+
+        return transposedMelody;
     }
 }

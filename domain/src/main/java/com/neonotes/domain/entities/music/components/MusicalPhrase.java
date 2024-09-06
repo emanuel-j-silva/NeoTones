@@ -10,12 +10,23 @@ public class MusicalPhrase implements MusicComponent{
         this.components = Arrays.asList(components);
     }
 
+    public void addComponent(MusicComponent component){
+        components.add(component);
+    }
+
     public List<MusicComponent> getComponents() {
         return components;
     }
 
     @Override
-    public void display() {
+    public MusicComponent shiftTone(int semitones) {
+        MusicalPhrase transposedMusicalPhrase = new MusicalPhrase();
 
+        for (MusicComponent component:components){
+            MusicComponent transposedComponent = component.shiftTone(semitones);
+            transposedMusicalPhrase.addComponent(transposedComponent);
+        }
+
+        return transposedMusicalPhrase;
     }
 }

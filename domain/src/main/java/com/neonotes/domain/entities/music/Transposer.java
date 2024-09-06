@@ -1,13 +1,22 @@
 package com.neonotes.domain.entities.music;
 
-import com.neonotes.domain.entities.music.Note;
+import com.neonotes.domain.entities.music.components.Arrangement;
+import com.neonotes.domain.entities.music.components.MusicComponent;
+
 
 public class Transposer {
-    private final Note standardScale;
-    private final Note pretendedScale;
 
-    public Transposer(Note standardScale, Note pretendedScale) {
-        this.standardScale = standardScale;
-        this.pretendedScale = pretendedScale;
+    public static Arrangement transpose(Arrangement defaultArrangement, Tone pretendedTone){
+        Arrangement arrangement = new Arrangement(pretendedTone);
+
+        int semitones = pretendedTone.getNote().ordinal() - defaultArrangement.getTone().getNote().ordinal();
+        arrangement.setTone(pretendedTone);
+
+        for (MusicComponent component: defaultArrangement.getComponents()){
+            component.shiftTone(semitones);
+            arrangement.addComponent(component);
+        }
+
+        return arrangement;
     }
 }

@@ -14,7 +14,7 @@ public class Phrase implements MusicComponent {
     }
 
     @Override
-    public void display() {
-
+    public MusicComponent shiftTone(int semitones) {
+        return this;
     }
 }
