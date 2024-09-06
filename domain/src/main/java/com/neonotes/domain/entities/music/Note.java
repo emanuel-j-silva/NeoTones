@@ -46,4 +46,16 @@ public enum Note {
     public String getRelativeFlatSymbol() {
         return relativeFlatSymbol;
     }
+
+    public Note transpose(int semitones) {
+        int actualSemitone = this.ordinal();
+
+        // Module to ensure semitones stay within the range of available notes
+        semitones = semitones % (B.ordinal() + 1);
+
+        int pretendedTone = actualSemitone + semitones;
+        int i = pretendedTone % ( B.ordinal() + 1);
+
+        return Note.values()[i];
+    }
 }
