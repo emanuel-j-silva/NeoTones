@@ -18,6 +18,13 @@ public class Melody implements MusicComponent {
     public void addNote(Note note){
         notes.add(note);
     }
+    public void addNotes(Note... notes){
+        this.notes.addAll(List.of(notes));
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
 
     @Override
     public MusicComponent shiftTone(int semitones) {
