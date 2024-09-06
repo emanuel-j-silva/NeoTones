@@ -1,6 +1,7 @@
 package com.neonotes.domain.entities.music;
 
 import com.neonotes.domain.entities.music.components.Arrangement;
+import com.neonotes.domain.entities.music.components.MusicComponent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +25,19 @@ public class Music {
         this.uuid = uuid == null ? UUID.randomUUID() : uuid;
         this.title = Objects.requireNonNull(title,"Title can't be null");
         this.arrangements = Objects.requireNonNull(arrangements,"Arrangements can't be null");
+    }
+
+    public void addArrangement(Arrangement arrangement){
+        if (arrangements.containsKey(arrangement.getTone())){
+            throw new IllegalStateException("There is already an arrangement with this tone for this music");
+        }
+        arrangements.put(arrangement.getTone(),arrangement);
+    }
+    public Arrangement getArrangementByTone(Tone tone){
+        if (!arrangements.containsKey(tone)){
+            throw new IllegalStateException("There is no arrangement with this tone for this music");
+        }
+        return arrangements.get(tone);
     }
 
     public UUID getUuid() {
