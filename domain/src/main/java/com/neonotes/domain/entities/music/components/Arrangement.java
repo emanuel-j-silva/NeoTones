@@ -11,7 +11,7 @@ public class Arrangement {
     private final List<MusicComponent> components;
 
     public Arrangement(Tone tone, MusicComponent... components) {
-        this.uuid = null;
+        this.uuid = UUID.randomUUID();
         this.tone = tone;
         this.components = new ArrayList<>(Arrays.asList(components));
     }
