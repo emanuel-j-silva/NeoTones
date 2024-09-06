@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class NoteTest{
 
     @Test
-    @DisplayName("Should return correct note on non-circular transpose")
+    @DisplayName("Should return correct note on non-circular transposition")
     void shouldReturnCorrectNoteBasicTranspose(){
         Note note = Note.C;
         Note transposedNote = note.transpose(3);
@@ -19,7 +19,7 @@ public class NoteTest{
     }
 
     @Test
-    @DisplayName("Should return correct note on simple circular transpose")
+    @DisplayName("Should return correct note on simple circular transposition")
     void shouldReturnCorrectNoteCircularTranspose(){
         Note note = Note.A;
         Note transposedNote = note.transpose(5);
@@ -93,6 +93,86 @@ public class NoteTest{
     void shouldReturnCorrectNoteOnExactlySeveralTurns(){
         Note note = Note.F_SHARP;
         Note transposedNote = note.transpose(72);
+
+        assertEquals(note,transposedNote);
+        assertEquals(6,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return correct note on non-circular negative transpose")
+    void shouldReturnCorrectNoteBasicNegativeTranspose(){
+        Note note = Note.D_SHARP;
+        Note transposedNote = note.transpose(-3);
+
+        assertEquals(Note.C,transposedNote);
+        assertEquals(0,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return correct note on simple circular negative transpose")
+    void shouldReturnCorrectNoteNegativeCircularTranspose(){
+        Note note = Note.D;
+        Note transposedNote = note.transpose(-5);
+
+        assertEquals(Note.A,transposedNote);
+        assertEquals(9,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return the correct note in more then one negative turn in the range of notes")
+    void shouldReturnCorrectNoteOnMoreThenOneNegativeTurn(){
+        Note note = Note.D;
+        Note transposedNote = note.transpose(-17);
+
+        assertEquals(Note.A,transposedNote);
+        assertEquals(9,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return the correct note in exactly one turn in the range of notes")
+    void shouldReturnCorrectNoteOnExactlyOneNegativeTurn(){
+        Note note = Note.F;
+        Note transposedNote = note.transpose(-12);
+
+        assertEquals(note,transposedNote);
+        assertEquals(5,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return the correct note in maximum negative semitone transposition")
+    void shouldReturnCorrectNoteOnMaximumNegative(){
+        Note note = Note.C;
+        Note transposedNote = note.transpose(-11);
+
+        assertEquals(Note.C_SHARP,transposedNote);
+        assertEquals(1,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return the correct note in minimum negative semitone transposition")
+    void shouldReturnCorrectNoteOnMinimumNegative(){
+        Note note = Note.G;
+        Note transposedNote = note.transpose(-1);
+
+        assertEquals(Note.F_SHARP,transposedNote);
+        assertEquals(6,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return the correct note in several turns on the range of notes")
+    void shouldReturnCorrectNoteOnSeveralNegativeTurns(){
+        Note note = Note.F;
+        Note transposedNote = note.transpose(-40);
+
+        assertEquals(Note.C_SHARP,transposedNote);
+        assertEquals(1,transposedNote.ordinal());
+    }
+
+    @Test
+    @DisplayName("Should return the correct note in more than one exact turn around the range of notes")
+    void shouldReturnCorrectNoteOnExactlySeveralNegativeTurns(){
+        Note note = Note.F_SHARP;
+        Note transposedNote = note.transpose(-72);
 
         assertEquals(note,transposedNote);
         assertEquals(6,transposedNote.ordinal());
