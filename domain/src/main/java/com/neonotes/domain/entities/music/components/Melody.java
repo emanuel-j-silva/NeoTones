@@ -23,6 +23,14 @@ public class Melody implements MusicComponent {
         this.notes.addAll(List.of(notes));
     }
 
+    public boolean removeNoteByIndex(int index){
+        Note note = notes.get(index);
+        if (note == null){
+            throw new IllegalArgumentException("Note not found with this index");
+        }
+        return notes.remove(note);
+    }
+
     public List<Note> getNotes() {
         return notes;
     }
