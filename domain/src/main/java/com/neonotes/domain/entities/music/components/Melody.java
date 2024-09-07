@@ -2,6 +2,7 @@ package com.neonotes.domain.entities.music.components;
 
 import com.neonotes.domain.entities.music.note.Note;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,9 +18,15 @@ public class Melody implements MusicComponent {
     }
 
     public void addNote(Note note){
+        if (note == null){
+            throw new IllegalArgumentException("Unable to add null objects in melody list");
+        }
         notes.add(note);
     }
     public void addNotes(Note... notes){
+        if (Arrays.stream(notes).anyMatch(Objects::isNull)){
+            throw new IllegalArgumentException("Unable to add null objects in melody list");
+        }
         this.notes.addAll(List.of(notes));
     }
 
