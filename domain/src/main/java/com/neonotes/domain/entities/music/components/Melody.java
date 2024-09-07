@@ -31,10 +31,11 @@ public class Melody implements MusicComponent {
     }
 
     public boolean removeNoteByIndex(int index){
-        Note note = notes.get(index);
-        if (note == null){
+        if (index < 0 || index >= notes.size()){
             throw new IllegalArgumentException("Note not found with this index");
         }
+
+        Note note = notes.get(index);
         return notes.remove(note);
     }
 

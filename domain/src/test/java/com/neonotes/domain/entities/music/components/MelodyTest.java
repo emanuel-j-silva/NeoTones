@@ -125,4 +125,11 @@ public class MelodyTest {
         assertThrows(IllegalArgumentException.class, () -> melody.addNotes(Note.C,null,Note.E));
     }
 
+    @Test
+    @DisplayName("Should throw exception when searching out of index")
+    void shouldThrowsSearchOutOfIndex(){
+
+        assertThrows(IllegalArgumentException.class, () -> melody.removeNoteByIndex(5));
+    }
+
 }
