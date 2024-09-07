@@ -1,5 +1,7 @@
 package com.neonotes.domain.entities.music.note;
 
+import java.util.Objects;
+
 public enum Note {
     C("C","DO"),
     C_SHARP("C#","DO#","Db","REb"),
@@ -63,5 +65,20 @@ public enum Note {
         }
 
         return Note.values()[i];
+    }
+
+    public boolean equalsNote(Note other) {
+        if (other == null) return false;
+
+        return Objects.equals(this.letter, other.letter)
+                || Objects.equals(this.symbol, other.symbol);
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "letter='" + letter + '\'' +
+                ", symbol='" + symbol + '\'' +
+                "} " + super.toString();
     }
 }

@@ -177,4 +177,22 @@ public class NoteTest{
         assertEquals(note,transposedNote);
         assertEquals(6,transposedNote.ordinal());
     }
+
+    @Test
+    @DisplayName("Should return true for comparing equal notes")
+    void shouldReturnTrueToEqualNotes(){
+        Note note1 = Note.G;
+        Note note2 = Note.G;
+
+        assertTrue(note2.equalsNote(note1));
+    }
+
+    @Test
+    @DisplayName("Should return false for comparing different notes")
+    void shouldReturnFalseToDifferentNotes(){
+        Note note1 = Note.G;
+        Note note2 = Note.E;
+
+        assertFalse(note2.equalsNote(note1));
+    }
 }

@@ -3,6 +3,7 @@ package com.neonotes.domain.entities.music.components;
 import com.neonotes.domain.entities.music.note.Note;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Melody implements MusicComponent {
     private final List<Note> notes;
@@ -37,4 +38,25 @@ public class Melody implements MusicComponent {
 
         return transposedMelody;
     }
+
+    @Override
+    public String toString() {
+        return "Melody{" +
+                "notes=" + notes +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Melody melody = (Melody) o;
+        return Objects.equals(this.notes, melody.notes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.notes);
+    }
+
 }
