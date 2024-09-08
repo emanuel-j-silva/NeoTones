@@ -17,8 +17,8 @@ public class User {
     public User(UUID uuid, String username, String email, String password) {
         this.uuid = uuid == null ? UUID.randomUUID() : uuid;
         this.username = Objects.requireNonNull(username,"Username can't be null");
-        this.email = Objects.requireNonNull(email,"Email can't be null");;
-        this.password = Objects.requireNonNull(password,"Password can't be null");;
+        this.email = Objects.requireNonNull(email,"Email can't be null");
+        this.password = Objects.requireNonNull(password,"Password can't be null");
     }
 
     public UUID getUuid() {
@@ -35,6 +35,15 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "uuid=" + uuid +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 
     @Override
