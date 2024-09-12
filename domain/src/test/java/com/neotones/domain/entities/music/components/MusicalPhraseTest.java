@@ -13,8 +13,6 @@ public class MusicalPhraseTest {
     @Test
     @DisplayName("Create instance with unique null element")
     void createWithOneNullElement(){
-        MusicalPhrase musicalPhrase = new MusicalPhrase(null);
-
         assertThatThrownBy(()-> new MusicalPhrase(null))
                 .isInstanceOf(NullPointerException.class);
     }
@@ -32,7 +30,9 @@ public class MusicalPhraseTest {
     @DisplayName("Should block if add a null component in the components list")
     void shouldBlockAddNullComponent(){
         MusicalPhrase musicalPhrase = new MusicalPhrase();
-        musicalPhrase.addComponent(null);
+
+        assertThatThrownBy(()-> musicalPhrase.addComponent(null))
+                .isInstanceOf(NullPointerException.class);
 
         assertThat(musicalPhrase).hasNoNullFieldsOrProperties();
     }
