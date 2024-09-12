@@ -1,16 +1,22 @@
 package com.neotones.domain.entities.music.components;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class MusicalPhrase implements MusicComponent{
     private final List<MusicComponent> components;
 
     public MusicalPhrase(MusicComponent... components) {
-        this.components = Arrays.asList(components);
+        if (components == null || Arrays.stream(components).anyMatch(Objects::isNull)){
+            throw new NullPointerException("Musical phrase can't contain null components");
+        }
+
+        this.components = new ArrayList<>(List.of(components));
     }
 
     public void addComponent(MusicComponent component){
+        if (component == null){
+            throw new NullPointerException("Can't add null to components list");
+        }
         components.add(component);
     }
 
