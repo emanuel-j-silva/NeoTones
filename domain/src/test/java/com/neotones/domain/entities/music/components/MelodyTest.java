@@ -132,4 +132,18 @@ public class MelodyTest {
         assertThrows(IllegalArgumentException.class, () -> melody.removeNoteByIndex(5));
     }
 
+    @Test
+    @DisplayName("Should block instantiate with a single null element")
+    void shouldBlockInstantiateWithSingleNull(){
+
+        assertThrows(IllegalArgumentException.class, () -> new Melody(null));
+    }
+
+    @Test
+    @DisplayName("Should block instantiate with a null element in notes list")
+    void shouldBlockInstantiateWithNullInList(){
+
+        assertThrows(IllegalArgumentException.class, () -> new Melody(List.of(null,Note.E)));
+    }
+
 }
