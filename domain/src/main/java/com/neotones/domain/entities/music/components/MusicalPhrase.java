@@ -1,6 +1,5 @@
 package com.neotones.domain.entities.music.components;
 
-import com.neotones.domain.entities.music.note.Note;
 
 import java.util.*;
 
