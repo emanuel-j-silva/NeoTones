@@ -54,4 +54,39 @@ public class MusicalPhraseTest {
 
         assertThat(musicalPhrase.getComponents().size()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("Should add components after instantiation with elements")
+    void shouldAddAfterInstantiationNoEmpty(){
+        Melody melody = new Melody(List.of(Note.A_SHARP));
+        Phrase phrase = new Phrase("Test");
+        MusicalPhrase musicalPhrase = new MusicalPhrase(List.of(melody,phrase));
+
+        Phrase phrase2 = new Phrase("Another test");
+        musicalPhrase.addComponent(phrase2);
+
+        assertThat(musicalPhrase.getComponents().size()).isEqualTo(3);
+    }
+
+    @Test
+    @DisplayName("Should add components after instantiation with no elements")
+    void shouldAddAfterInstantiationEmpty(){
+        Melody melody = new Melody(List.of(Note.B,Note.E));
+        Phrase phrase = new Phrase("Test");
+
+        MusicalPhrase musicalPhrase = new MusicalPhrase();
+        musicalPhrase.addComponent(melody);
+        musicalPhrase.addComponent(phrase);
+
+        assertThat(musicalPhrase.getComponents().size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Should add a single component in components list")
+    void shouldAddSingleComponent(){
+        Phrase phrase = new Phrase("Test");
+        MusicalPhrase musicalPhrase = new MusicalPhrase(List.of(phrase));
+
+        assertThat(musicalPhrase.getComponents().size()).isEqualTo(1);
+    }
 }
