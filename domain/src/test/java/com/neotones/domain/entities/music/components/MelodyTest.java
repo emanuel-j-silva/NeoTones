@@ -77,7 +77,7 @@ public class MelodyTest {
     }
 
     @Test
-    @DisplayName("Should remove the note correctly")
+    @DisplayName("Should remove the note by index correctly")
     void shouldRemoveTheNoteCorrectly(){
         boolean isRemoved = melody.removeNoteByIndex(1);
 
@@ -87,7 +87,7 @@ public class MelodyTest {
     }
 
     @Test
-    @DisplayName("Should remove the note correctly")
+    @DisplayName("Should return empty list when remove all notes")
     void shouldReturnEmptyNotesList(){
         melody.removeNoteByIndex(0);
         melody.removeNoteByIndex(0);
