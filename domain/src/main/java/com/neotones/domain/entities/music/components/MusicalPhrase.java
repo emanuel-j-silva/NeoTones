@@ -12,7 +12,7 @@ public class MusicalPhrase implements MusicComponent{
 
     public MusicalPhrase(List<MusicComponent> components) {
         if (components == null || components.stream().anyMatch(Objects::isNull)){
-            throw new NullPointerException("Musical phrase can't contain null components");
+            throw new IllegalArgumentException("Musical phrase can't contain null components");
         }
 
         this.components = new ArrayList<>(components);
@@ -20,7 +20,7 @@ public class MusicalPhrase implements MusicComponent{
 
     public void addComponent(MusicComponent component){
         if (component == null){
-            throw new NullPointerException("Can't add null to components list");
+            throw new IllegalArgumentException("Can't add null to components list");
         }
         if (component == this){
             throw new IllegalArgumentException("A component cannot contain itself");
@@ -61,6 +61,13 @@ public class MusicalPhrase implements MusicComponent{
     }
 
     @Override
+    public String toString() {
+        return "MusicalPhrase{" +
+                "components=" + components +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof MusicalPhrase that)) return false;
@@ -70,12 +77,5 @@ public class MusicalPhrase implements MusicComponent{
     @Override
     public int hashCode() {
         return Objects.hash(components);
-    }
-
-    @Override
-    public String toString() {
-        return "MusicalPhrase{" +
-                "components=" + components +
-                '}';
     }
 }
