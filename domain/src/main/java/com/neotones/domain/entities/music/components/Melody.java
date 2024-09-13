@@ -15,6 +15,9 @@ public class Melody implements MusicComponent {
     }
 
     public Melody(List<Note> notes) {
+        if (notes == null || notes.stream().anyMatch(Objects::isNull)){
+            throw new IllegalArgumentException("Melody can't contain null components");
+        }
         this.notes = notes;
     }
 
