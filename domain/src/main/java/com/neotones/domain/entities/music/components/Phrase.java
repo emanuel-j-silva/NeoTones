@@ -19,6 +19,13 @@ public class Phrase implements MusicComponent {
     }
 
     @Override
+    public String toString() {
+        return "Phrase{" +
+                "phrase='" + phrase + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Phrase phrase1)) return false;
