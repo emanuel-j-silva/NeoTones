@@ -3,6 +3,7 @@ package com.neotones.domain.entities.music.components;
 import com.neotones.domain.entities.music.note.Note;
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -142,8 +143,11 @@ public class MelodyTest {
     @Test
     @DisplayName("Should block instantiate with a null element in notes list")
     void shouldBlockInstantiateWithNullInList(){
+        List<Note> notes = new ArrayList<>();
+        notes.add(Note.B);
+        notes.add(null);
 
-        assertThrows(IllegalArgumentException.class, () -> new Melody(List.of(null,Note.E)));
+        assertThrows(IllegalArgumentException.class, () -> new Melody(notes));
     }
 
 }
