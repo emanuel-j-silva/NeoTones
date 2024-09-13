@@ -4,6 +4,7 @@ import com.neotones.domain.entities.music.note.Note;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
@@ -14,7 +15,7 @@ public class MusicalPhraseTest {
     @DisplayName("Create instance with unique null element")
     void createWithOneNullElement(){
         assertThatThrownBy(()-> new MusicalPhrase(null))
-                .isInstanceOf(NullPointerException.class);
+                .isInstanceOf(IllegalArgumentException.class);
     }
     @Test
     @DisplayName("Create instance with null elements")
@@ -22,8 +23,13 @@ public class MusicalPhraseTest {
         Melody melody = new Melody(List.of(Note.B,Note.A));
         Phrase phrase = new Phrase("Phrase");
 
-        assertThatThrownBy(()-> new MusicalPhrase(List.of(melody,phrase,null)))
-                .isInstanceOf(NullPointerException.class);
+        List<MusicComponent> components = new ArrayList<>();
+        components.add(melody);
+        components.add(phrase);
+        components.add(null);
+
+        assertThatThrownBy(()-> new MusicalPhrase(components))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
@@ -32,7 +38,7 @@ public class MusicalPhraseTest {
         MusicalPhrase musicalPhrase = new MusicalPhrase();
 
         assertThatThrownBy(()-> musicalPhrase.addComponent(null))
-                .isInstanceOf(NullPointerException.class);
+                .isInstanceOf(IllegalArgumentException.class);
 
         assertThat(musicalPhrase).hasNoNullFieldsOrProperties();
     }
