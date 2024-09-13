@@ -10,7 +10,7 @@ public class MusicalPhrase implements MusicComponent{
     }
 
     public MusicalPhrase(List<MusicComponent> components) {
-        if (components == null || components.contains(null)){
+        if (components == null || components.stream().anyMatch(Objects::isNull)){
             throw new NullPointerException("Musical phrase can't contain null components");
         }
 

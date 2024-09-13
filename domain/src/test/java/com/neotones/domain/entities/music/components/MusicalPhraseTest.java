@@ -22,7 +22,7 @@ public class MusicalPhraseTest {
         Melody melody = new Melody(List.of(Note.B,Note.A));
         Phrase phrase = new Phrase("Phrase");
 
-        assertThatThrownBy(()-> new MusicalPhrase(melody,phrase,null))
+        assertThatThrownBy(()-> new MusicalPhrase(List.of(melody,phrase,null)))
                 .isInstanceOf(NullPointerException.class);
     }
 
@@ -35,5 +35,23 @@ public class MusicalPhraseTest {
                 .isInstanceOf(NullPointerException.class);
 
         assertThat(musicalPhrase).hasNoNullFieldsOrProperties();
+    }
+
+    @Test
+    @DisplayName("Should correctly add components individually")
+    void shouldAddComponentsIndividually(){
+        Melody melody1 = new Melody(List.of(Note.A,Note.B));
+        Phrase phrase1 = new Phrase("Test");
+
+        Melody melody2 = new Melody(List.of(Note.C_SHARP,Note.E));
+        Phrase phrase2 = new Phrase("Test phrase");
+        MusicalPhrase mp1 = new MusicalPhrase(List.of(melody2,phrase2));
+
+        MusicalPhrase musicalPhrase = new MusicalPhrase();
+        musicalPhrase.addComponent(mp1);
+        musicalPhrase.addComponent(melody1);
+        musicalPhrase.addComponent(phrase1);
+
+        assertThat(musicalPhrase.getComponents().size()).isEqualTo(3);
     }
 }
