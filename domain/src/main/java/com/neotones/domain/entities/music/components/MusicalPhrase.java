@@ -5,12 +5,16 @@ import java.util.*;
 public class MusicalPhrase implements MusicComponent{
     private final List<MusicComponent> components;
 
-    public MusicalPhrase(MusicComponent... components) {
-        if (components == null || Arrays.stream(components).anyMatch(Objects::isNull)){
+    public MusicalPhrase(){
+        this.components = new ArrayList<>();
+    }
+
+    public MusicalPhrase(List<MusicComponent> components) {
+        if (components == null || components.contains(null)){
             throw new NullPointerException("Musical phrase can't contain null components");
         }
 
-        this.components = new ArrayList<>(List.of(components));
+        this.components = new ArrayList<>(components);
     }
 
     public void addComponent(MusicComponent component){
