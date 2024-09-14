@@ -28,11 +28,11 @@ public class MusicalPhrase implements MusicComponent{
         components.add(component);
     }
 
-    public void addComponents(MusicComponent... components){
-        if (Arrays.stream(components).anyMatch(Objects::isNull)){
+    public void addComponents(List<MusicComponent> components){
+        if (components == null || components.stream().anyMatch(Objects::isNull)){
             throw new IllegalArgumentException("Unable to add null in components list");
         }
-        this.components.addAll(List.of(components));
+        this.components.addAll(components);
     }
 
     public List<MusicComponent> getComponents() {
