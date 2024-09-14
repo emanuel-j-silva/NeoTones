@@ -95,4 +95,36 @@ public class MusicalPhraseTest {
 
         assertThat(musicalPhrase.getComponents().size()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("Should block when adding itself to component list")
+    void shouldBlockAddItself(){
+        Melody melody = new Melody(List.of(Note.B,Note.C));
+        Phrase phrase = new Phrase("Test");
+        MusicalPhrase musicalPhrase = new MusicalPhrase(List.of(melody,phrase));
+
+        assertThatThrownBy(()-> musicalPhrase.addComponent(musicalPhrase))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Should block when adding null list in add components method")
+    void shouldBlockAddNullList(){
+        MusicalPhrase musicalPhrase = new MusicalPhrase();
+        assertThatThrownBy(()-> musicalPhrase.addComponents(null))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Should block when adding some null component in add components method")
+    void shouldBlockAddNullComponentInList(){
+        Phrase phrase = new Phrase("Test");
+        Phrase phrase2 = new Phrase("Another test");
+        List<MusicComponent> components = new ArrayList<>(List.of(phrase, phrase2));
+        components.add(null);
+
+        MusicalPhrase musicalPhrase = new MusicalPhrase();
+        assertThatThrownBy(()-> musicalPhrase.addComponents(components))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
