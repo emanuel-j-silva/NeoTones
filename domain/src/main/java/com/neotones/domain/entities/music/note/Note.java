@@ -18,8 +18,8 @@ public enum Note {
 
     private static final int NOTE_RANGE = 12;
 
-    private String letter;
-    private String symbol;
+    private final String letter;
+    private final String symbol;
     private String relativeFlatLetter;
     private String relativeFlatSymbol;
 
