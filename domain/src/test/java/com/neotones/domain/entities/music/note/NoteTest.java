@@ -194,4 +194,22 @@ public class NoteTest{
 
         assertFalse(note2.equalsNote(note1));
     }
+
+    @Test
+    @DisplayName("Should return correct relative flat")
+    void shouldReturnRelativeFlat(){
+        Note note = Note.C_SHARP;
+        Note note2 = note.transpose(2);
+
+        assertEquals("REb",note.getRelativeFlatSymbol());
+        assertEquals("Db",note.getRelativeFlatLetter());
+        assertEquals("DO#",note.getSymbol());
+        assertEquals("C#",note.getLetter());
+
+        assertEquals("MIb",note2.getRelativeFlatSymbol());
+        assertEquals("Eb",note2.getRelativeFlatLetter());
+        assertEquals("RE#",note2.getSymbol());
+        assertEquals("D#",note2.getLetter());
+
+    }
 }
