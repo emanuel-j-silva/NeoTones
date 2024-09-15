@@ -32,6 +32,9 @@ public class MusicalPhrase implements MusicComponent{
         if (components == null || components.stream().anyMatch(Objects::isNull)){
             throw new IllegalArgumentException("Unable to add null in components list");
         }
+        if (components.stream().anyMatch(component -> component == this)){
+            throw new IllegalArgumentException("A component cannot contain itself");
+        }
         this.components.addAll(components);
     }
 
