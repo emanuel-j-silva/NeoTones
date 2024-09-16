@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -126,5 +127,61 @@ public class MusicalPhraseTest {
         MusicalPhrase musicalPhrase = new MusicalPhrase();
         assertThatThrownBy(()-> musicalPhrase.addComponents(components))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Should remove element by index correctly")
+    void shouldRemoveByIndex(){
+        Phrase phrase = new Phrase("Test");
+        Phrase phrase2 = new Phrase("Another test");
+
+        MusicalPhrase musicalPhrase = new MusicalPhrase();
+        musicalPhrase.addComponents(List.of(phrase,phrase2));
+        musicalPhrase.removeComponentByIndex(0);
+
+        assertThat(musicalPhrase.getComponents()).noneMatch(Predicate.isEqual(phrase));
+        assertThat(musicalPhrase.getComponents().size()).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("Should block when trying remove element out of index")
+    void shouldBlockRemoveOutOfIndex(){
+        Phrase phrase = new Phrase("Test");
+        Phrase phrase2 = new Phrase("Another test");
+
+        MusicalPhrase musicalPhrase = new MusicalPhrase();
+        musicalPhrase.addComponents(List.of(phrase,phrase2));
+
+        assertThatThrownBy(()-> musicalPhrase.removeComponentByIndex(2))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+    @Test
+    @DisplayName("Should transpose all components correctly")
+    void shouldTransposeCorrectly(){
+        Phrase phrase = new Phrase("Test");
+        Melody melody = new Melody(List.of(Note.C,Note.D,Note.E));
+
+        Phrase componentPhrase = new Phrase("Another test");
+        Melody componentMelody = new Melody(List.of(Note.A,Note.B,Note.C));
+        MusicalPhrase compMusicalPhrase = new MusicalPhrase(List.of(componentPhrase,componentMelody));
+
+        Melody expectedComponentMelody = new Melody(List.of(Note.B,Note.C_SHARP,Note.D));
+        MusicalPhrase expectedCompMusicalPhase = new MusicalPhrase(List.of(componentPhrase,expectedComponentMelody));
+
+        MusicalPhrase musicalPhrase = new MusicalPhrase(List.of(phrase,melody,compMusicalPhrase));
+        MusicalPhrase component = (MusicalPhrase) musicalPhrase.shiftTone(2);
+
+        assertThat(component.getComponents().get(0)).isEqualTo(phrase);
+        assertThat(component.getComponents().get(1))
+                .isEqualTo(new Melody(List.of(Note.D, Note.E,Note.F_SHARP)));
+
+        assertThat(component.getComponents().get(2)).isInstanceOf(MusicalPhrase.class);
+        assertThat(component.getComponents().get(2)).isEqualTo(expectedCompMusicalPhase);
+
+
+
     }
 }
