@@ -1,6 +1,7 @@
 package com.neotones.domain.entities.music;
 
 import com.neotones.domain.entities.music.note.Tone;
+import com.neotones.domain.entities.user.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,18 +13,21 @@ public class Music {
     private final String title;
     private final Map<Tone, Arrangement> arrangements;
 
-    public Music(String title) {
-        this(UUID.randomUUID(), title, new HashMap<>());
+    private final User user;
+
+    public Music(String title, User user) {
+        this(null, title, new HashMap<>(), user);
     }
 
-    public Music(String title, Map<Tone, Arrangement> arrangements) {
-        this(UUID.randomUUID(), title, arrangements);
+    public Music(String title, Map<Tone, Arrangement> arrangements, User user) {
+        this(UUID.randomUUID(), title, arrangements, user);
     }
 
-    public Music(UUID uuid, String title, Map<Tone, Arrangement> arrangements) {
+    public Music(UUID uuid, String title, Map<Tone, Arrangement> arrangements, User user) {
         this.uuid = uuid == null ? UUID.randomUUID() : uuid;
         this.title = Objects.requireNonNull(title,"Title can't be null");
         this.arrangements = Objects.requireNonNull(arrangements,"Arrangements can't be null");
+        this.user = Objects.requireNonNull(user, "User can´t be null");
     }
 
     public void addArrangement(Arrangement arrangement){
