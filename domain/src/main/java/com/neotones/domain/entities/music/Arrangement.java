@@ -39,6 +39,15 @@ public class Arrangement {
         this.components.addAll(components);
     }
 
+    public boolean removeMusicComponentByIndex(int index){
+        if (index < 0 || index >= components.size()){
+            throw new IllegalArgumentException("Component not found with this index");
+        }
+
+        MusicComponent component = components.get(index);
+        return components.remove(component);
+    }
+
     public UUID getUuid() {
         return uuid;
     }
