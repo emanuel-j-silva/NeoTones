@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -96,5 +97,34 @@ public class ArrangementTest {
 
         assertThat(arrangement.equals(arrangement2)).isFalse();
         assertThat(arrangement.hashCode()).isNotEqualTo(arrangement2.hashCode());
+    }
+
+    @Test
+    @DisplayName("Should remove element by index correctly")
+    void shouldRemoveByIndex(){
+        Phrase phrase = new Phrase("Test");
+        Phrase phrase2 = new Phrase("Another test");
+
+        Arrangement arrangement = new Arrangement(tone);
+        arrangement.addComponents(List.of(phrase,phrase2));
+        boolean removeByIndex = arrangement.removeMusicComponentByIndex(0);
+
+        assertThat(removeByIndex).isTrue();
+        assertThat(arrangement.getComponents()).noneMatch(Predicate.isEqual(phrase));
+        assertThat(arrangement.getComponents().size()).isEqualTo(1);
+
+    }
+
+    @Test
+    @DisplayName("Should block when trying remove element out of index")
+    void shouldBlockRemoveOutOfIndex(){
+        Phrase phrase = new Phrase("Test");
+        Phrase phrase2 = new Phrase("Another test");
+
+        Arrangement arrangement = new Arrangement(tone);
+        arrangement.addComponents(List.of(phrase,phrase2));
+
+        assertThatThrownBy(()-> arrangement.removeMusicComponentByIndex(2))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
