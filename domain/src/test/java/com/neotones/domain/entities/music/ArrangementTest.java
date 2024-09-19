@@ -17,6 +17,7 @@ import static org.assertj.core.api.Assertions.*;
 
 public class ArrangementTest {
 
+    private final UUID uuid = UUID.randomUUID();
     private final Tone tone = new Tone(Note.C, ScaleType.MAJOR);
     private final List<MusicComponent> components = new ArrayList<>(
             List.of(new Phrase("phrase"), new Melody(List.of(Note.C,Note.D,Note.E))));
@@ -27,6 +28,22 @@ public class ArrangementTest {
         Arrangement arrangement = new Arrangement(null,tone,components);
 
         assertThat(arrangement.getUuid()).isInstanceOf(UUID.class);
+    }
+
+    @Test
+    @DisplayName("Create Arrangement without UUID parameter")
+    void shouldCreateWithoutUuid(){
+        Arrangement arrangement = new Arrangement(tone,components);
+
+        assertThat(arrangement.getUuid()).isInstanceOf(UUID.class);
+    }
+
+    @Test
+    @DisplayName("Create Arrangement with null tone")
+    void shouldBlockNullTone(){
+
+        assertThatThrownBy(()->new Arrangement(null, components))
+                .isInstanceOf(NullPointerException.class);
     }
 
     @Test
@@ -59,5 +76,25 @@ public class ArrangementTest {
 
         assertThatThrownBy(()-> arrangement.addComponents(components))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("Should return true on equals method")
+    void returnTrueEqualsComp(){
+        Arrangement arrangement = new Arrangement(uuid,tone,components);
+        Arrangement arrangement2 = new Arrangement(uuid,tone,components);
+
+        assertThat(arrangement.equals(arrangement2)).isTrue();
+        assertThat(arrangement.hashCode()).isEqualTo(arrangement2.hashCode());
+    }
+
+    @Test
+    @DisplayName("Should return false on equals method")
+    void returnFalseEqualsComp(){
+        Arrangement arrangement = new Arrangement(uuid,tone,components);
+        Arrangement arrangement2 = new Arrangement(UUID.randomUUID(),tone,components);
+
+        assertThat(arrangement.equals(arrangement2)).isFalse();
+        assertThat(arrangement.hashCode()).isNotEqualTo(arrangement2.hashCode());
     }
 }
