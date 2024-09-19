@@ -137,8 +137,9 @@ public class MusicalPhraseTest {
 
         MusicalPhrase musicalPhrase = new MusicalPhrase();
         musicalPhrase.addComponents(List.of(phrase,phrase2));
-        musicalPhrase.removeComponentByIndex(0);
+        boolean removeByIndex = musicalPhrase.removeComponentByIndex(0);
 
+        assertThat(removeByIndex).isTrue();
         assertThat(musicalPhrase.getComponents()).noneMatch(Predicate.isEqual(phrase));
         assertThat(musicalPhrase.getComponents().size()).isEqualTo(1);
 
