@@ -1,5 +1,7 @@
 package com.neotones.domain.entities.music;
 
+import com.neotones.domain.entities.music.note.Note;
+import com.neotones.domain.entities.music.note.ScaleType;
 import com.neotones.domain.entities.music.note.Tone;
 import com.neotones.domain.entities.user.User;
 import org.junit.jupiter.api.BeforeAll;
@@ -44,6 +46,7 @@ public class MusicTest {
         Music music = new Music("Title",user);
 
         assertThat(music.getUuid()).isInstanceOf(UUID.class);
+        assertThat(music.getTitle()).isEqualTo("Title");
     }
 
     @Test
@@ -60,5 +63,38 @@ public class MusicTest {
         Music music = new Music(null,"Title",arrangements,user);
 
         assertThat(music.getUuid()).isInstanceOf(UUID.class);
+    }
+
+    @Test
+    @DisplayName("Should block when adding a repeated arrangement")
+    void shouldBlockAddSameArrangement(){
+        Arrangement arrangement = new Arrangement(tone);
+
+        assertThatThrownBy(()-> musicTest.addArrangement(arrangement))
+                .isInstanceOf(IllegalStateException.class);
+    }
+
+    @Test
+    @DisplayName("Should add a new arrangement correctly")
+    void shouldAddNewArrangement(){
+        Arrangement arrangement = new Arrangement(new Tone(Note.A, ScaleType.MAJOR));
+
+        musicTest.addArrangement(arrangement);
+        assertThat(musicTest.getArrangements().size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("Should return arrangement by tone correctly")
+    void shouldReturnArrangementByTone(){
+
+        assertThat(musicTest.getArrangementByTone(tone)).isEqualTo(arrangement);
+    }
+
+    @Test
+    @DisplayName("Should block when not found arrangement by tone")
+    void shouldBlockArrangementByTone(){
+
+        assertThatThrownBy(()-> musicTest.getArrangementByTone(new Tone(Note.C_SHARP,ScaleType.ARABIC_MINOR)))
+                .isInstanceOf(IllegalStateException.class);
     }
 }
