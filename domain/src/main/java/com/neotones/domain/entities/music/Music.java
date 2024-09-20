@@ -54,4 +54,25 @@ public class Music {
     public Map<Tone, Arrangement> getArrangements() {
         return arrangements;
     }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "title='" + title + '\'' +
+                ", arrangements=" + arrangements +
+                ", user=" + user +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Music music)) return false;
+        return uuid.equals(music.uuid) && title.equals(music.title) && arrangements.equals(music.arrangements) && user.equals(music.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(uuid, title, arrangements, user);
+    }
 }
