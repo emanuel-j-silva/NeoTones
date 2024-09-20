@@ -97,4 +97,22 @@ public class MusicTest {
         assertThatThrownBy(()-> musicTest.getArrangementByTone(new Tone(Note.C_SHARP,ScaleType.ARABIC_MINOR)))
                 .isInstanceOf(IllegalStateException.class);
     }
+
+    @Test
+    @DisplayName("Should return false on equals method")
+    void shouldReturnFalseEquals(){
+        Music music = new Music("Test title", user);
+
+        assertThat(music.equals(musicTest)).isFalse();
+    }
+
+    @Test
+    @DisplayName("Should return true on equals method")
+    void shouldReturnTrueEquals(){
+        UUID uuid = UUID.randomUUID();
+        Music music = new Music(uuid,"Another title",arrangements,user);
+        Music music2 = new Music(uuid,"Another title",arrangements,user);
+
+        assertThat(music.equals(music2)).isTrue();
+    }
 }
